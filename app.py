@@ -36,8 +36,8 @@ if not api_key:
 # db_url = "https://github.com/langchain-ai/langchain-academy/raw/main/module-2/state_db/example.db"
 
 # Create directory if it doesn't exist
-if not os.path.exists(db_dir):
-    os.makedirs(db_dir)
+# if not os.path.exists(db_dir):
+#     os.makedirs(db_dir)
 
 # Download the database file if it doesn't exist
 if not os.path.exists(db_path):
