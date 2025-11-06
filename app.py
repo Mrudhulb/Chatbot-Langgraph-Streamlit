@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 from typing import Literal
 from langchain_core.messages import HumanMessage, SystemMessage, RemoveMessage, AIMessage
 from langgraph.graph import MessagesState, StateGraph, START, END
-from langgraph.checkpoint.sqlite import SqliteSaver
+from langgraph.checkpoint.sqlite import MemoorySaver
 from langchain_google_genai import ChatGoogleGenerativeAI
 
 # --- 1. Page Configuration ---
@@ -21,15 +21,20 @@ st.title("🤖 My Chatbot (with SQLite Memory)")
 
 # --- 2. Load Environment Variables ---
 # Make sure you have a .env file in this directory
-# env_path = r"C:\Users\jatin\OneDrive - itmiracle.com\Tech\Mrudhul\Handson\langchain-academy\Streamlit\app.py"  # Assumes .env is in the same folder
+env_path = ".env"  # Assumes .env is in the same folder
 load_dotenv()
+api_key = st.secrets.get("GOOGLE_API_KEY")
+
+if not api_key:
+    st.error("Please add your GOOGLE_API_KEY to Streamlit secrets!")
+    st.stop()
 
 # --- 3. Download and Connect to SQLite Database ---
 # (This replaces the shell commands from your example)
 
-db_dir = "state_db"
-db_path = os.path.join(db_dir, "example.db")
-db_url = "https://github.com/langchain-ai/langchain-academy/raw/main/module-2/state_db/example.db"
+# db_dir = "state_db"
+# db_path = os.path.join(db_dir, "example.db")
+# db_url = "https://github.com/langchain-ai/langchain-academy/raw/main/module-2/state_db/example.db"
 
 # Create directory if it doesn't exist
 if not os.path.exists(db_dir):
@@ -42,13 +47,13 @@ if not os.path.exists(db_path):
     st.success("Database downloaded.")
 
 # Connect to the database
-conn = sqlite3.connect(db_path, check_same_thread=False)
+# conn = sqlite3.connect(db_path, check_same_thread=False)
 
 # --- 4. Define Graph and State (from chatbot.py) ---
 #
 
 # Define the model
-model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0, api_key=os.getenv("GOOGLE_API_KEY"))
+model = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0, api_key=api_key)
 
 # State class to store messages and summary
 class State(MessagesState):
@@ -105,10 +110,10 @@ def get_graph():
     workflow.add_edge("summarize_conversation", END)
     
     # Use the SqliteSaver
-    memory = SqliteSaver(conn)
+    # memory = SqliteSaver(conn)
     
     # Compile the graph
-    graph = workflow.compile(checkpointer=memory)
+    graph = workflow.compile(checkpointer=MemoorySaver())
     return graph
 
 graph = get_graph()
