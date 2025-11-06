@@ -1,7 +1,7 @@
 langchain
 langsmith
 streamlit
-langhraph
+langgraph
 google-generative-ai
 python-dotenv
 sqlite3
