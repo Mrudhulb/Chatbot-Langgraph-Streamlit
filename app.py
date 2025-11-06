@@ -112,7 +112,7 @@ def get_graph():
     # memory = SqliteSaver(conn)
     
     # Compile the graph
-    graph = workflow.compile(checkpointer=MemoorySaver())
+    graph = workflow.compile(checkpointer=MemorySaver())
     return graph
 
 graph = get_graph()
