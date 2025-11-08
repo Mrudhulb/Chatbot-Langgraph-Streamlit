@@ -22,10 +22,15 @@ st.title("🤖 My Chatbot (with MemorySaver)")
 # Make sure you have a .env file in this directory
 env_path = ".env"  # Assumes .env is in the same folder
 load_dotenv()
-api_key = st.secrets.get("GOOGLE_API_KEY")
+api_key = os.environ.get('GOOGLE_API_KEY')
 
 if not api_key:
-    st.error("Please add your GOOGLE_API_KEY to Streamlit secrets!")
+    # If not in secrets, try getting it from environment variables (for local .env)
+    api_key = st.secrets.get("GOOGLE_API_KEY")
+
+# If the key is still not found in either place, show an error
+if not api_key:
+    st.error("Please add your GOOGLE_API_KEY to Streamlit secrets (for deployment) or a .env file (for local development)!")
     st.stop()
 
 # --- 3. Download and Connect to SQLite Database ---
