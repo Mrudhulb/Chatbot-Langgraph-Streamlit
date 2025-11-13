@@ -32,7 +32,7 @@ Python 3.13 (Note: This project is built for Python 3.13. Using other versions, 
 
 * Copy this key. You will need it for both local and cloud deployment.
 
-## 🚀 Setup & Deployment
+# 🚀 Setup & Deployment
 
 You can deploy this application in two ways: directly to Streamlit Community Cloud or by running it locally on your desktop.
 
@@ -77,16 +77,21 @@ You can deploy this application in two ways: directly to Streamlit Community Clo
 
 * First, clone the repository (either the original or your fork) to your local machine.
 
-  *git clone <your-repository-url<t>>*
+  *git clone https://github.com/Mrudhulb/Chatbot-Langgraph-Streamlit<t>*
+
+  or
+
+  *git clone <you-forked-repository-url<t>>*
 
   *cd <repository-name<t>>*
 
 
 ### Create the environment
-* It's highly recommended to use a virtual environment. Make sure you are using Python 3.13.
-  
-  *python3.13 -m venv venv*
-
+* It's highly recommended to use a virtual environment. Make sure you have installed Python 3.13.
+  * **On macOS/Linux:**
+    *python3.13 -m venv venv*
+  * **On Windows:**
+    *py 3.13 -m venv venv*
 ### Activate the environment
 * **On macOS/Linux:**
   *source venv/bin/activate*
