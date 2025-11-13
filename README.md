@@ -81,7 +81,7 @@ You can deploy this application in two ways: directly to Streamlit Community Clo
 
   or
 
-  *git clone <you-forked-repository-url<t>>*
+  *git clone <forked-repository-url<t>>*
 
   *cd <repository-name<t>>*
 
