@@ -91,7 +91,7 @@ You can deploy this application in two ways: directly to Streamlit Community Clo
   * **On macOS/Linux:**
     *python3.13 -m venv venv*
   * **On Windows:**
-    *py 3.13 -m venv venv*
+    *py -3.13 -m venv venv*
 ### Activate the environment
 * **On macOS/Linux:**
   *source venv/bin/activate*
